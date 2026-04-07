@@ -9,7 +9,21 @@
   font-family: Arial;
   background: linear-gradient(135deg, #4f552f, #7a8450, #a3ad7a);
   padding:20px;
-      
+}
+    .container { max-width:900px; margin:auto; background:#fff; padding:20px; border-radius:10px; }
+    h2 { color:#ff6a00; text-align:center; }
+    h3 { color:#556b2f; }
+    label { display:block; margin-top:10px; }
+    input, textarea, select { width:100%; padding:8px; margin-top:5px; border-radius:5px; border:1px solid #ccc; }
+    .row { display:flex; gap:10px; }
+    .row div { flex:1; }
+    button { margin-top:20px; padding:12px; width:100%; background:#556b2f; color:#fff; border:none; border-radius:8px; font-size:16px; }
+    .logo { text-align:center; margin-bottom:20px; font-size:28px; font-weight:bold; color:#ff6a00; }
+    .aviso { margin-top:10px; padding:10px; background:#fff3cd; border:1px solid #ffeeba; border-radius:6px; color:#856404; font-size:14px; }
+  </style>
+</head>
+<body>
+
 <div class="container">
   <div class="logo">GINGA Rooftop</div>
 
@@ -144,8 +158,10 @@
     <label>Nome do Titular</label>
     <input type="text" id="titular">
 
-    <h3>Documentos Anexos</h3>
-    <input type="file" id="documentos" multiple>
+    <h3>Documentos</h3>
+    <div class="aviso">
+      ⚠️ Após gerar o PDF, envie junto os seguintes documentos: CPF, RG ou CNH, comprovante de endereço e cartão CNPJ (se houver).
+    </div>
 
     <h3>Declaração</h3>
     <label>
@@ -203,6 +219,9 @@ async function gerarPDF() {
   add("Conta: " + conta.value);
   add("PIX: " + pix.value);
   add("Titular: " + titular.value);
+
+  y += 6;
+  add("Documentos devem ser enviados junto com este PDF.");
 
   doc.save("cadastro_freelancer.pdf");
 }
